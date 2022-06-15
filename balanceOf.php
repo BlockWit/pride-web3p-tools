@@ -15,12 +15,15 @@ $contractInstance = $contract->at($contractAddress);
 // Address of holder who wants to know token balance
 $holder = '0x085D15DB9c7Cd3Df188422f88Ec41ec573D691b9';
 
-$contractInstance->call('balanceOf', $holder, function ($err, $version) {
+$contractInstance->call('balanceOf', $holder, function ($err, $response) {
     if ($err !== null) {
         // Something went wrong
         return;
     }
-    if (isset($version)) {
-        echo $version[0];
+    if (isset($response)) {
+        // Return balance
+        $balance = $response[0];
+        // Let's do something what you want with balance
+        echo $balance;
     }
 });
