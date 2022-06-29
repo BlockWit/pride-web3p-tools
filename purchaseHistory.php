@@ -9,6 +9,7 @@ use Web3\Providers\HttpProvider;
 use Web3\RequestManagers\HttpRequestManager;
 use Web3\Utils;
 use Web3\Web3;
+use PHP\Math\BigInteger\BigInteger;
 
 $contractAddress = '0xe81F49f63F127A3289A8cffc70D6943E36effD3f';
 
@@ -34,8 +35,24 @@ $functionSignature = "0x21034444";
 $transaction['to'] = AddressFormatter::format($contractAddress);
 $transaction['data'] = $functionSignature . Utils::stripZero($data);
 $eth = $web3->__get('eth');
-$eth->call($transaction, "latest", function ($err, $transaction){
-    echo $transaction;
-});
 
+$eth->call($transaction, "latest", function ($err, $transaction){
+    $preparedSingle = substr($transaction, 2);
+    $singleSplited = str_split($preparedSingle , 64);
+    $sizeString = hexdec(trim($singleSplited[1], "00"));
+    $arrayOfTokens = [];
+    for($i = 0; $i < $sizeString; $i++) {
+        $curValue = trim($singleSplited[$i*3 + 4], "00");
+        $preparedCurValue = $curValue == 0 ? 'pride' : ($curValue == 1 ? 'erc20' : 'native');
+        $once = [
+            'tokenId' => new BigInteger(hexdec($singleSplited[$i*3 + 2])),
+            'price' => new BigInteger(base_convert($singleSplited[$i*3 + 3], 16, 10)),
+            'currency' => $preparedCurValue
+        ];
+        array_push($arrayOfTokens, $once);
+    };
+
+    // TODO: Place your code here. You should work with $arrayOfTokens
+    print_r($arrayOfTokens);
+});
 

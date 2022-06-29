@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f3c2e8b84ed5baff923a55909fc59c0",
+    "content-hash": "8ae1776280f50f9d7e13595b430dc69c",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -377,6 +377,59 @@
                 "source": "https://github.com/kornrunner/php-keccak/tree/1.1.0"
             },
             "time": "2020-12-07T15:40:44+00:00"
+        },
+        {
+            "name": "phpmath/biginteger",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmath/biginteger.git",
+                "reference": "3f474feec8d22561073dbc096b2a1b6d0f6833e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmath/biginteger/zipball/3f474feec8d22561073dbc096b2a1b6d0f6833e1",
+                "reference": "3f474feec8d22561073dbc096b2a1b6d0f6833e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.6",
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHP\\Math\\BigInteger\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Walter Tamboer",
+                    "homepage": "https://waltertamboer.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP library to work with big integers.",
+            "homepage": "https://github.com/phpmath/biginteger",
+            "keywords": [
+                "BigInteger",
+                "PHP7",
+                "integer",
+                "math",
+                "phpmath"
+            ],
+            "support": {
+                "issues": "https://github.com/phpmath/biginteger/issues",
+                "source": "https://github.com/phpmath/biginteger/tree/master"
+            },
+            "time": "2016-11-14T21:13:47+00:00"
         },
         {
             "name": "phpseclib/phpseclib",

@@ -36,6 +36,7 @@ class ComposerStaticInitce739b42ab54d372caf7de735d0fdd8c
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+            'PHP\\Math\\BigInteger\\' => 20,
         ),
         'G' => 
         array (
@@ -64,12 +65,16 @@ class ComposerStaticInitce739b42ab54d372caf7de735d0fdd8c
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'PHP\\Math\\BigInteger\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmath/biginteger/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
