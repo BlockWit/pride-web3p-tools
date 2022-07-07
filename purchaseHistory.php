@@ -11,7 +11,7 @@ use Web3\Utils;
 use Web3\Web3;
 use PHP\Math\BigInteger\BigInteger;
 
-$contractAddress = '0xe81F49f63F127A3289A8cffc70D6943E36effD3f';
+$contractAddress = '0x24a14F9Aa908986EbBB858624B13d48c15510b33';
 
 $abi = '[{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"getPurchaseHistory","outputs":[{"components":[{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"uint256","name":"price","type":"uint256"},{"internalType":"enumINFTMarket.Currency","name":"currency","type":"uint8"}],"internalType":"structINFTMarket.Purchase[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"}]';
 
@@ -39,15 +39,16 @@ $eth = $web3->__get('eth');
 $eth->call($transaction, "latest", function ($err, $transaction){
     $preparedSingle = substr($transaction, 2);
     $singleSplited = str_split($preparedSingle , 64);
-    $sizeString = hexdec(trim($singleSplited[1], "00"));
+    $sizeString = hexdec($singleSplited[1]);
     $arrayOfTokens = [];
     for($i = 0; $i < $sizeString; $i++) {
-        $curValue = trim($singleSplited[$i*3 + 4], "00");
+        $curValue = hexdec($singleSplited[$i*4 + 4]);
         $preparedCurValue = $curValue == 0 ? 'pride' : ($curValue == 1 ? 'erc20' : 'native');
         $once = [
-            'tokenId' => new BigInteger(hexdec($singleSplited[$i*3 + 2])),
-            'price' => new BigInteger(base_convert($singleSplited[$i*3 + 3], 16, 10)),
-            'currency' => $preparedCurValue
+            'tokenId' => new BigInteger(hexdec($singleSplited[$i*4 + 2])),
+            'price' => new BigInteger(base_convert($singleSplited[$i*4 + 3], 16, 10)),
+            'currency' => $preparedCurValue,
+            'timestamp' => hexdec($singleSplited[$i*4 + 5])
         ];
         array_push($arrayOfTokens, $once);
     };
